@@ -1,6 +1,7 @@
 
 //this tells the loading image when to stop
 
+$(window).load(function() {})
 
 
 
@@ -31,3 +32,11 @@ $.ajax(settings).done(function (response) {
     console.log(response.Item.CurrentPrice.Value);
     console.log(response.Item.PictureURL[5]);
 });
+
+//Get 'er done Marie
+    //make the spinner hide when the API loads the items
+    //select 5 items per weather condition to display
+    //make 5 items show up in box
+        //make sure this includes price, image, and title
+    //add any spinners necessary for teammates
+    //adorable corgi images for weather
