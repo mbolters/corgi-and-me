@@ -34,7 +34,8 @@ $.ajax(settings).done(function (response) {
 });
 
 //Get 'er done Marie
-    //make the spinner hide when the API loads the items
+    //make the spinner hide when the API loads the items    
+    //create about page and link
     //select 5 items per weather condition to display
     //make 5 items show up in box
         //make sure this includes price, image, and title
