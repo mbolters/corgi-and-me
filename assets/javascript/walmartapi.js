@@ -1,17 +1,12 @@
-
-//this tells the loading image when to stop
-
-$(window).load(function() {})
-
+//start jQuery
+$(document).ready(function(){
 
 
 //this is the Walmart API search 
 
-var isloading = true;
-// insert load image
 var productID = "17018181";
 
-var walmartObjects = []; 
+var walmartObjects = [];
 
 var settings = {
 	"async": true,
@@ -25,14 +20,21 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response) {
-    isloading = false;
-    //stop load image
+    $("#spinner").hide(); //hides the spinner once results load
+    $("#products").html()
+
+
+
+
+
+
+
     // walmartObjects[0] = response.Item;
 	console.log(response.Item.Title);
     console.log(response.Item.CurrentPrice.Value);
     console.log(response.Item.PictureURL[5]);
 });
-
+});
 //Get 'er done Marie
     //make the spinner hide when the API loads the items    
     //create about page and link

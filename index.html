@@ -63,9 +63,9 @@
               <div class="col-lg-5 text-center card">
                 <div class=" card-body">
                   <h3 class="">Places to Play</h3>
-                  <p class="">
-                  This is where the google map will go
-                  </p>
+                  <div id='map-container'>
+                    <div id='map'></div>
+                  </div>
                   <a class="btn btn-tertiary">optional link button to google maps</a>
                 </div>
               </div>
@@ -74,9 +74,91 @@
                 <div class="card-body">
                   <h3 class="">Buy what you need</h3>
                   <br>
-                      <div class="text-center">
-                          <div class="spinner-border text-primary" role="status">
-                          </div>
+                      <div class="text-center" id= "products">
+                          <div class="spinner-border text-primary" role="status" id="spinner"></div>
+
+<!-- Products to order -->
+
+<!-- Product 1 -->
+<div class="row">
+    <div class="col-md-6">
+      <figure class="card card-product">
+        <div class="img-wrap"><img src="https://s9.postimg.org/tupxkvfj3/image.jpg"></div>
+        <figcaption class="info-wrap">
+            <h4 class="title">Another name of item</h4>
+            <div class="rating-wrap">
+              <div class="label-rating">132 reviews</div>
+            </div> <!-- rating-wrap.// -->
+        </figcaption>
+        <div class="bottom-wrap">
+          <a href="" class="btn btn-sm btn-primary">Order Now</a>	
+          <div class="price-wrap h5">
+            <span class="price">$1280</span> 
+          </div> <!-- price-wrap.// -->
+        </div> <!-- bottom-wrap.// -->
+      </figure>
+    </div> <!-- col // -->
+
+<!-- Product 2 -->
+    <div class="col-md-6">
+      <figure class="card card-product">
+        <div class="img-wrap"><img src="https://s9.postimg.org/ojb106167/image.jpg"> </div>
+        <figcaption class="info-wrap">
+            <h4 class="title">Good product</h4>
+            <div class="rating-wrap">
+              <div class="label-rating">132 reviews</div>
+            </div> <!-- rating-wrap.// -->
+        </figcaption>
+        <div class="bottom-wrap">
+            <a href="" class="btn btn-sm btn-primary">Order Now</a>	
+            <div class="price-wrap h5">
+              <span class="price">$1280</span> 
+            </div> <!-- price-wrap.// -->
+        </div> <!-- bottom-wrap.// -->
+      </figure>
+    </div> <!-- col // -->
+  </div> <!--row-->
+
+<!-- Product 3 -->
+    <div class="row">
+    <div class="col-md-6">
+      <figure class="card card-product">
+        <div class="img-wrap"><img src="https://s9.postimg.org/4ooze1tof/image.jpg"></div>
+        <figcaption class="info-wrap">
+            <h4 class="title">Product name goes here</h4>
+            <div class="rating-wrap">
+              <div class="label-rating">132 reviews</div>
+            </div> <!-- rating-wrap.// -->
+        </figcaption>
+        <div class="bottom-wrap">
+            <a href="" class="btn btn-sm btn-primary">Order Now</a>	
+            <div class="price-wrap h5">
+              <span class="price">$1280</span> 
+            </div> <!-- price-wrap.// -->
+        </div> <!-- bottom-wrap.// -->
+      </figure>
+    </div> <!--col-->
+
+<!-- Product 4 -->
+      <div class="col-md-6">
+          <figure class="card card-product">
+            <div class="img-wrap"><img src="https://s9.postimg.org/4ooze1tof/image.jpg"></div>
+            <figcaption class="info-wrap">
+                <h4 class="title">Product name goes here</h4>
+                <div class="rating-wrap">
+                  <div class="label-rating">132 reviews</div>
+                </div> <!-- rating-wrap.// -->
+            </figcaption>
+            <div class="bottom-wrap">
+                <a href="" class="btn btn-sm btn-primary">Order Now</a>	
+                <div class="price-wrap h5">
+                  <span class="price">$1280</span> 
+                </div> <!-- price-wrap.// -->
+            </div> <!-- bottom-wrap.// -->
+          </figure>
+    </div> <!-- col // -->
+    </div> <!-- row.// -->
+    </div> 
                         </div>
                   <!-- <a href="" class="btn btn-secondary">optional button in case we want to use</a> -->
                 </div>
@@ -90,6 +172,6 @@
         </div>
        
 
-
+<script src='assets/javascript/map.js'></script>
 </body>
 
