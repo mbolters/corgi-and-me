@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
-    <head>
-        <meta charset="utf-8" />
-        <title> Dwight's Pollen Plights </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="Images/CorgiandSunMini.png" type="image/x-icon"/>
-        <!-- App CSS -->
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
-        
-        <title> Dwight's Pollen Plights </title>
-
-    </head>
+<head>
+    <meta charset="utf-8" />
+    <title> Dwight's Pollen Plights </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="Images/CorgiandSunMini.png" type="image/x-icon"/>
+    <!-- App CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    
+</head>
 
 <body id="homePage">
 
@@ -27,66 +25,120 @@
     <div class="row">
       <a class="text-center col-lg-4" href="#"><img src="Images/CorgiMainLogo2_edited-1.png"></a>
 
-    <!-- Navigation -->
-    <div class ="col-lg-4"></div>
-    <div class="row col-lg-4">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link home" href="index.html">Home</a>
-          </li>
-            <a class="nav-link about" href="#">About</a>
-          </li>
-        </ul>
-    </div>
+      <!-- Navigation -->
+      <div class ="col-lg-4"></div>
+      <div class="row col-lg-4">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link home" href="index.html">Home</a>
+            </li>
+            <li>
+              <a class="nav-link about" href="#">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </div>
 
 
       
-            <!-- About -->
-            <section class="row" id="About">
-              <div class="col-12">
-                <h2 class="text-uppercase text-center text-dark ">About this app</h2>
+  <!-- About -->
+  <section class="row" id="About">
+    <div class="col-12">
+      <h2 class="text-uppercase text-center text-dark ">About this app</h2>
 
-              </div>
-              <div class="col-lg-4 text-center card">
-                  <div class="card-body">
-                  <h3 class="">Temp and Pollen</h3>
-                  <p class="">
-                    interactive images for pollen and temp levels
-                  </p>
-                </div>
-              </div>
-      
-              <div class="col-lg-4 text-center card">
-                <div class=" card-body">
-                  <h3 class="">Places to Play</h3>
-                  <p class="">
-                  This is where the google map will go
-                  </p>
-                  <a class="btn btn-tertiary">optional link button to google maps</a>
-                </div>
-              </div>
-      
-              <div class="col-lg-4 text-center card">
-                <div class="card-body">
-                  <h3 class="">Buy what you need</h3>
-                  <p class="">
-                    auto load box of items relevant to weather conditions to purchase for doggo
-                  </p>
-                  <a href="" class="btn btn-secondary">optional button in case we want to use</a>
-                </div>
-              </div>
-            </section>
-            <!-- Page footer -->
-            <footer class="row">
-            </footer>
-          </div>
-          <!-- .container-fluid -->
-        </div>
+    </div>
+    <div class="col-lg-4 text-center card">
+      <div class="card-body" id="temp-card">
+        <h3 class="">Temp and Pollen</h3>
+        <p class="">
+          interactive images for pollen and temp levels
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-4 text-center card">
+      <div class="card-body">
+        <h3 class="">Places to Play</h3>
+        <p class="">
+          This is where the google map will go
+        </p>
+        <a class="btn btn-tertiary">optional link button to google maps</a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 text-center card">
+      <div class="card-body">
+        <h3 class="">Buy what you need</h3>
+        <p class="">
+          auto load box of items relevant to weather conditions to purchase for doggo
+        </p>
+        <a href="" class="btn btn-secondary">optional button in case we want to use</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page footer -->
+  <footer class="row">
+  </footer>
+
+  <script type="text/javascript">
+    const APIKey = "0c6668971156042fde49c6adad3e262d";
+    const queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=Austin,US&cnt=8&appid=" + APIKey;
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      const tempK = response.list[0].main.temp;
+      console.log(tempK);
+      const tempF = Math.round((tempK - 273.15) * 9/5 + 32);
+      console.log(tempF);
+      $("#temp-card").append("<h3 id='temp-val'>" + tempF + "° F</h3>");
+      $("#temp-val").css("margin-left", "30%");
+      $("#temp-val").css("margin-right", "30%");
+      tempColor(tempF);
+
+    }).catch(function(error) {
+      console.log("AJAX GET failed");
+    });
+
+    function tempColor(temp) {
+      if (temp > 110) {
+        $("#temp-val").css("background-color", "rgb(150,0,0)");
+      } else if (temp > 100) {
+        $("#temp-val").css("background-color", "rgb(200,0,0)");
+      } else if (temp > 90) {
+        $("#temp-val").css("background-color", "rgb(255,0,0)");
+      } else if (temp > 80) {
+        $("#temp-val").css("background-color", "rgb(255,130,0)");
+      } else if (temp > 70) {
+        $("#temp-val").css("background-color", "rgb(255,192,0)");
+      } else if (temp > 60) {
+        $("#temp-val").css("background-color", "rgb(255,255,0)");
+      } else if (temp > 50) {
+        $("#temp-val").css("background-color", "rgb(204,230,40)");
+      } else if (temp > 40) {
+        $("#temp-val").css("background-color", "rgb(146,208,80)");
+      } else {
+        $("#temp-val").css("background-color", "rgb(115,190,211)");
+      };
+    }
+  </script>
        
-
+<!--
+Above 110F: Extremely hot
+100 to 110F: Excessively hot
+90 to 100F: Very hot
+80 to 90F: Hot
+70 to 80F: Very warm
+60 to 70F: Warm
+50 to 60F: Mild
+40 to 50F: Cool
+30 to 40F: Chilly
+-->
 
 </body>
-
+</html>
