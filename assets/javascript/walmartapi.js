@@ -21,7 +21,15 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
     $("#spinner").hide(); //hides the spinner once results load
-    $("#products").html()
+    let image = response.Item.PictureURL[4];
+    let title = response.Item.Title;
+    let price = response.Item.CurrentPrice.Value;
+    $( "<img>" ).addClass("imageSize").attr( "src", image).appendTo( "#imageSpace1" );
+
+    // $(".image").css("image", url("image"));
+
+    $(".title1").append(title);
+    $(".price1").append(price);
 
 
 
