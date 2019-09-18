@@ -1,28 +1,25 @@
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
-    <head>
-        <meta charset="utf-8" />
-        <title> Dwight's Pollen Plights </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">             
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-        <!-- AJAX -->
-        <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-        <script src= "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="Images/CorgiandSunMini.png" type="image/x-icon"/>
-        <!-- App CSS -->
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
-        <!-- Walmart JS -->
-        <script src="assets/javascript/walmartapi.js"></script>
-        
-        <title> Dwight's Pollen Plights </title>
-
-    </head>
+<head>
+    <meta charset="utf-8" />
+    <title> Dwight's Pollen Plights </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">             
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+    <!-- AJAX -->
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="Images/CorgiandSunMini.png" type="image/x-icon"/>
+    <!-- App CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- Walmart JS -->
+    <script src="assets/javascript/walmartapi.js"></script>
+</head>
 
 <body id="homePage">
 
@@ -46,16 +43,36 @@
     </div>
   </div>
 
-  <!-- 3 Boxes -->
-  <section class="row">
-    <div class="col-lg-3 text-center card">
-      <div class="card-body">
-      <h3 class="">Temp and Pollen</h3>
-      <p class="">
-        interactive images for pollen and temp levels
-      </p>
-      </div>
-    </div>
+            <!-- 3 Boxes -->
+            <section class="row">
+              </div>
+              <div class="col-lg-3 text-center card">
+                  <div class="card-body" id="temp-card">
+                  <h3 class="">Temp and Pollen</h3>
+                  <p class="">
+                    interactive images for pollen and temp levels
+                  </p>
+                </div>
+              </div>
+      
+              <div class="col-lg-5 text-center card">
+                <div class=" card-body">
+                  <h3 class="">Places to Play</h3>
+                  <div id='map-container'>
+                    <div id='map'></div>
+                  </div>
+                  <a class="btn btn-tertiary">optional link button to google maps</a>
+                </div>
+              </div>
+      
+              <div class="col-lg-3 text-center card">
+                <div class="card-body">
+                  <h3 class="">Buy what you need</h3>
+                  <br>
+                      <div class="text-center" id= "products">
+                          <div class="spinner-border text-primary" role="status" id="spinner"></div>
+
+<!-- Products to order -->
 
     <div class="col-lg-5 text-center card">
       <div class=" card-body">
@@ -120,6 +137,8 @@
         </div>
        
 
-<script src='assets/javascript/map.js'></script>
-</body>
+  <script src='assets/javascript/map.js'></script>
+  <script type="text/javascript" src="assets/javascript/weather.js"></script>
 
+</body>
+</html>
