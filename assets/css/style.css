@@ -5,13 +5,13 @@
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
-}
+  }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
+  }
+  
 body, .jumbotron {
   background: url("../../Images/Skybackground.jpg");
   height: 100%;
@@ -21,40 +21,31 @@ body, .jumbotron {
   background-position: center;
   background-size: cover;
   background-color: #ddfffc;
-}
+  }
 
-/* .home, .about {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 32px;
-  letter-spacing: 0px;
-  word-spacing: 0px;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none solid rgb(68, 68, 68);
-  font-style: normal;
-  font-variant: normal;
-  text-transform: uppercase;
-  background: white;
-  margin-left:10px;
-  margin-right:10px;
-  outline: solid 5px black; */
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}
 
 .card {
   background-color: rgba(211, 211, 211, 0.5);
   margin: 20px;
 } 
 
-<<<<<<< HEAD
 .image {
   height: 100%; 
   width: 100%; 
   object-fit: contain;
 }
 
-#map-container{
-=======
+#container {
+  position: relative;
+}
+
 #map-container {
->>>>>>> 89ea20fefcf9822a0799f75d75a4b12f89b2e5de
   width: 100%;
   height: 350px;
 }
