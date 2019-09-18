@@ -8,82 +8,166 @@
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
+    <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">             
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+    <!-- AJAX -->
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
     <!-- Favicon -->
     <link rel="shortcut icon" href="Images/CorgiandSunMini.png" type="image/x-icon"/>
     <!-- App CSS -->
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
-    
+    <!-- Walmart JS -->
+    <script src="assets/javascript/walmartapi.js"></script>
 </head>
 
 <body id="homePage">
-
-
 
   <!-- Logo -->
   <div class="jumbotron container-fluid">
     <div class="row">
       <a class="text-center col-lg-4" href="#"><img src="Images/CorgiMainLogo2_edited-1.png"></a>
 
-      <!-- Navigation -->
-      <div class ="col-lg-4"></div>
-      <div class="row col-lg-4">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link home" href="index.html">Home</a>
-            </li>
-            <li>
-              <a class="nav-link about" href="#">About</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+    <!-- Navigation -->
+    <div class ="col-lg-4"></div>
+    <div class="row col-lg-4">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <img class="nav-link home" href="index.html" src= "Images/homecloud.png"></img>
+          </li>
+            <img class="nav-link about" href="#" src= "Images/aboutthunder.png"><img>
+          </li>
+        </ul>
+    </div>
     </div>
   </div>
 
-
+            <!-- 3 Boxes -->
+            <section class="row">
+              </div>
+              <div class="col-lg-3 text-center card">
+                  <div class="card-body" id="temp-card">
+                  <h3 class="">Temp and Pollen</h3>
+                  <p class="">
+                    interactive images for pollen and temp levels
+                  </p>
+                </div>
+              </div>
       
-  <!-- About -->
-  <section class="row" id="About">
-    <div class="col-12">
-      <h2 class="text-uppercase text-center text-dark ">About this app</h2>
+              <div class="col-lg-5 text-center card">
+                <div class=" card-body">
+                  <h3 class="">Places to Play</h3>
+                  <div id='map-container'>
+                    <div id='map'></div>
+                  </div>
+                  <a class="btn btn-tertiary">optional link button to google maps</a>
+                </div>
+              </div>
+      
+              <div class="col-lg-3 text-center card">
+                <div class="card-body">
+                  <h3 class="">Buy what you need</h3>
+                  <br>
+                      <div class="text-center" id= "products">
+                          <div class="spinner-border text-primary" role="status" id="spinner"></div>
 
-    </div>
-    <div class="col-lg-4 text-center card">
-      <div class="card-body" id="temp-card">
-        <h3 class="">Temp and Pollen</h3>
-        <p class="">
-          interactive images for pollen and temp levels
-        </p>
-      </div>
-    </div>
+<!-- Products to order -->
 
-    <div class="col-lg-4 text-center card">
-      <div class="card-body">
-        <h3 class="">Places to Play</h3>
-        <p class="">
-          This is where the google map will go
-        </p>
-        <a class="btn btn-tertiary">optional link button to google maps</a>
-      </div>
-    </div>
+<!-- Product 1 -->
+<div class="row">
+    <div class="col-md-6">
+      <figure class="card card-product">
+        <div class="img-wrap"><img src="https://s9.postimg.org/tupxkvfj3/image.jpg"></div>
+        <figcaption class="info-wrap">
+            <h4 class="title">Another name of item</h4>
+            <div class="rating-wrap">
+              <div class="label-rating">132 reviews</div>
+            </div> <!-- rating-wrap.// -->
+        </figcaption>
+        <div class="bottom-wrap">
+          <a href="" class="btn btn-sm btn-primary">Order Now</a>	
+          <div class="price-wrap h5">
+            <span class="price">$1280</span> 
+          </div> <!-- price-wrap.// -->
+        </div> <!-- bottom-wrap.// -->
+      </figure>
+    </div> <!-- col // -->
 
-    <div class="col-lg-4 text-center card">
-      <div class="card-body">
-        <h3 class="">Buy what you need</h3>
-        <p class="">
-          auto load box of items relevant to weather conditions to purchase for doggo
-        </p>
-        <a href="" class="btn btn-secondary">optional button in case we want to use</a>
-      </div>
-    </div>
-  </section>
+<!-- Product 2 -->
+    <div class="col-md-6">
+      <figure class="card card-product">
+        <div class="img-wrap"><img src="https://s9.postimg.org/ojb106167/image.jpg"> </div>
+        <figcaption class="info-wrap">
+            <h4 class="title">Good product</h4>
+            <div class="rating-wrap">
+              <div class="label-rating">132 reviews</div>
+            </div> <!-- rating-wrap.// -->
+        </figcaption>
+        <div class="bottom-wrap">
+            <a href="" class="btn btn-sm btn-primary">Order Now</a>	
+            <div class="price-wrap h5">
+              <span class="price">$1280</span> 
+            </div> <!-- price-wrap.// -->
+        </div> <!-- bottom-wrap.// -->
+      </figure>
+    </div> <!-- col // -->
+  </div> <!--row-->
 
-  <!-- Page footer -->
-  <footer class="row">
-  </footer>
+<!-- Product 3 -->
+    <div class="row">
+    <div class="col-md-6">
+      <figure class="card card-product">
+        <div class="img-wrap"><img src="https://s9.postimg.org/4ooze1tof/image.jpg"></div>
+        <figcaption class="info-wrap">
+            <h4 class="title">Product name goes here</h4>
+            <div class="rating-wrap">
+              <div class="label-rating">132 reviews</div>
+            </div> <!-- rating-wrap.// -->
+        </figcaption>
+        <div class="bottom-wrap">
+            <a href="" class="btn btn-sm btn-primary">Order Now</a>	
+            <div class="price-wrap h5">
+              <span class="price">$1280</span> 
+            </div> <!-- price-wrap.// -->
+        </div> <!-- bottom-wrap.// -->
+      </figure>
+    </div> <!--col-->
 
+<!-- Product 4 -->
+      <div class="col-md-6">
+          <figure class="card card-product">
+            <div class="img-wrap"><img src="https://s9.postimg.org/4ooze1tof/image.jpg"></div>
+            <figcaption class="info-wrap">
+                <h4 class="title">Product name goes here</h4>
+                <div class="rating-wrap">
+                  <div class="label-rating">132 reviews</div>
+                </div> <!-- rating-wrap.// -->
+            </figcaption>
+            <div class="bottom-wrap">
+                <a href="" class="btn btn-sm btn-primary">Order Now</a>	
+                <div class="price-wrap h5">
+                  <span class="price">$1280</span> 
+                </div> <!-- price-wrap.// -->
+            </div> <!-- bottom-wrap.// -->
+          </figure>
+    </div> <!-- col // -->
+    </div> <!-- row.// -->
+    </div> 
+                        </div>
+                  <!-- <a href="" class="btn btn-secondary">optional button in case we want to use</a> -->
+                </div>
+              </div>
+            </section>
+            <!-- Page footer -->
+            <footer class="row">
+            </footer>
+          </div>
+          <!-- .container-fluid -->
+        </div>
+       
+
+  <script src='assets/javascript/map.js'></script>
   <script type="text/javascript" src="assets/javascript/weather.js"></script>
 
 </body>
