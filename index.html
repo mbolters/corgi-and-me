@@ -6,15 +6,17 @@
   <title> Dwight's Pollen Plights </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!-- Bootstrap -->
   <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">             
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
   <!-- AJAX -->
-  <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+  <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
   <script src= "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
   <!-- Favicon --> 
   <link rel="shortcut icon" href="Images/CorgiandSunMini.png" type="image/x-icon"/>
+  <!-- Moment -->
+  <script type="text/javascript" src='https://momentjs.com/downloads/moment.js'></script>
   <!-- CSS -->
   <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
   <!-- About HTML -->
@@ -24,8 +26,30 @@
 
 <body> 
 
-  <!-- Logo -->
+  <!-- Header -->
   <div class="jumbotron container-fluid" id = "container">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Please enter your location</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id='popup-text'>Oops! Something's wrong with your browser geolocation. Please enter your location.</p>
+                    <form id='location-form'>
+                        <input type='text' id='location-input' class='form-control form-control-lg'>
+                        <br>
+                        <button type='submit' class='btn btn-primary btn-block'>Submit</button>
+                    </form>                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Logo -->
     <div class="row">
       <a class="text-center col-lg-4" href="#"><img src="Images/CorgiMainLogo2_edited-1.png"></a>
 
@@ -123,14 +147,16 @@
   <!-- Page Footer -->
   <footer class="text-center"><footer>&copy; Copyright 2019 TheMaroons</footer>
   
-  <!-- Javascript -->
-  <script type="text/javascript" src='https://momentjs.com/downloads/moment.js'></script>
   <!-- Map JS -->
   <script type="text/javascript" src='assets/javascript/map.js'></script>
+  <!-- Pollen Stations-->
+  <script type="text/javascript" src='assets/javascript/pollenStations.js'></script>
   <!-- Weather JS -->
   <script type="text/javascript" src="assets/javascript/weather.js"></script>
   <!-- Walmart JS -->
   <script type="text/javascript" src="assets/javascript/walmartapi.js"></script>
+  <!-- Handler -->
+  <script type="text/javascript" src="assets/javascript/handler.js"></script>
 
 </body>
 </html>
