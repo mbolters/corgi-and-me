@@ -29,11 +29,11 @@ function initMap(location){
         })
     });
 
-    // Map marker factory with CorgiAfraidofSun.jpeg as placeholder icon
+    // Map marker factory 
     function createMarker(place){
         // Initializes icon
         let icon = {
-            url: 'Images/CorgiAfraidofSun.jpeg',
+            url: 'Images/CorgiAfraidofSun.png',
             scaledSize: new google.maps.Size(50, 50),
         }
         // Initializes marker
