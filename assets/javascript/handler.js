@@ -30,9 +30,9 @@ $(document).ready(function(){
                     if (status === 'OK') {
                       if (results[0]) {
                         user.place = {
-                            country: results[0].address_components[6].long_name.replace(' ', '_'),
-                            region: results[0].address_components[5].long_name.replace(' ', '_'),
-                            city: results[0].address_components[3].long_name.replace(' ', '_'),
+                            country: results[0].address_components.find(e => e.types.find(type => type === 'country')).long_name.replace(' ', '_'),
+                            region: results[0].address_components.find(e => e.types.find(type => type === 'administrative_area_level_1')).long_name.replace(' ', '_'),
+                            city: results[0].address_components.find(e => e.types.find(type => type === 'locality')).long_name.replace(' ', '_'),
                         }
                       } else {
                         console.log('No place results found');
