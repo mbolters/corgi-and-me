@@ -34,39 +34,30 @@ function initShopping(){
 		}
 	}];
 
-
 	$.ajax(settings[0]).done(function (response) {
 		$("#spinner").hide(); //hides the spinner once results load
 		let price = response.Item.CurrentPrice.Value;
 		$("#firstLink").attr("href", walmartLink + productID[0]);
 		$( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[2]).appendTo( "#firstLink" );
 		$("#price1").append("$" + price);
+	});
 
+	$.ajax(settings[1]).done(function (response) {
+		$("#spinner").hide(); //hides the spinner once results load
+		let price = response.Item.CurrentPrice.Value;
+		$("#secondLink").attr("href", walmartLink + productID[1]);
+		$( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[0]).appendTo( "#secondLink" );
+		$("#price2").append("$" + price);
+	});
 
-$.ajax(settings[0]).done(function (response) {
-    $("#spinner").hide(); //hides the spinner once results load
-    let price = response.Item.CurrentPrice.Value;
-    $("#firstLink").attr("href", walmartLink + productID[0]);
-    $( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[2]).appendTo( "#firstLink" );
-    $("#price1").append("$" + price);
-});
-
-$.ajax(settings[1]).done(function (response) {
-    $("#spinner").hide(); //hides the spinner once results load
-    let price = response.Item.CurrentPrice.Value;
-    $("#secondLink").attr("href", walmartLink + productID[1]);
-    $( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[0]).appendTo( "#secondLink" );
-    $("#price2").append("$" + price);
-});
-
-$.ajax(settings[2]).done(function (response) {
-    $("#spinner").hide(); //hides the spinner once results load
-    let price = response.Item.CurrentPrice.Value;
-    $("#thirdLink").attr("href", walmartLink + productID[2]);
-    $( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[1]).appendTo( "#thirdLink" );
-    $("#price3").append("$" + price);
-});
-});
-//Get 'er done Marie
-    //select items per weather condition to display
-    //adorable corgi images for weather
+	$.ajax(settings[2]).done(function (response) {
+		$("#spinner").hide(); //hides the spinner once results load
+		let price = response.Item.CurrentPrice.Value;
+		$("#thirdLink").attr("href", walmartLink + productID[2]);
+		$( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[1]).appendTo( "#thirdLink" );
+		$("#price3").append("$" + price);
+	});
+}
+	//Get 'er done Marie
+		//select items per weather condition to display
+		//adorable corgi images for weather
