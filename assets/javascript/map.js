@@ -7,17 +7,17 @@ $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBWQ-sFtacE3m0IMYr
     const service = new google.maps.places.PlacesService(map);
     const infowindow = new google.maps.InfoWindow(); 
     let latLng;
-    // Calls W3C geolocation feature of user's browser
+    // Checks if browser geolocation is enabled
     if (navigator.geolocation) {
+        // Asynchronous call to W3C geolocation for user location
         navigator.geolocation.getCurrentPosition(function(position) {
+            // Casts user coordinates as a Google Maps LatLng object
             let userLat = position.coords.latitude;
             let userLng = position.coords.longitude;
-            // Casts user coordinates as a Google Maps LatLng object
             latLng = new google.maps.LatLng(userLat, userLng);
-            // Centers the Map on user
+            // Centers Map on user
             map.setCenter(latLng);
-            // Have a search for each individual type
-            // This will populate the map with the results of 4 different type-constrained searches
+            // Populate the map with the results of 4 different type-constrained searches
             const typeBank = ['name', 'pet_store', 'park', 'veterinary_care']
             typeBank.forEach(type => {
                 // Initializing request query for "dog" "places" in your area constrained by type
@@ -27,8 +27,10 @@ $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBWQ-sFtacE3m0IMYr
                     query: 'dog',
                     type: type
                 }
+                // Each search returns a list of results
                 service.textSearch(request, function(results, status){
                     if (status == google.maps.places.PlacesServiceStatus.OK) {
+                        // Creates a marker for each result
                         results.forEach(result => {
                             createMarker(result);
                         })
@@ -40,46 +42,67 @@ $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBWQ-sFtacE3m0IMYr
 
     // Map marker factory with CorgiAfraidofSun.jpeg as placeholder icon
     function createMarker(place){
+        // Initializes icon
         let icon = {
             url: 'Images/CorgiAfraidofSun.jpeg',
             scaledSize: new google.maps.Size(50, 50),
         }
+        // Initializes marker
         let marker = new google.maps.Marker({
             map: map,
             position: place.geometry.location,
             icon: icon
         });
-        google.maps.event.addListener(marker, 'click', function() {
+        // When marker is clicked, an infowindow with relevant information pops up
+        google.maps.event.addListener(marker, 'click', function(){
             let request = {
                 placeId: place.place_id,
                 fields: ['name', 'formatted_address', 'price_level', 'rating',
                  'formatted_phone_number', 'opening_hours', 'photos', 'website'],
             };
+            // A getDetails call is neccessary to get many specific fields of information
             service.getDetails(request, function(result, status){
-                console.log(result);
-                let newPlace;
+                let infoHTML;
                 if (status == google.maps.places.PlacesServiceStatus.OK){
-                    newPlace = 'test';
-                    console.log(newPlace);
-                    let dayOfWeek = moment().isoWeekday() - 1;
-                    let html = `
-                    <img src='${result.photos[0].getUrl({maxWidth: 150, maxHeight: 150})}'><br>
-                    ${result.name}<br>
-                    ${result.formatted_address}<br>
-                    ${result.price_level}<br>
-                    ${result.rating}<br>
-                    ${result.formatted_phone_number}<br>
-                    ${result.opening_hours.weekday_text[dayOfWeek]}<br>
-                    <a href="${result.website}">Website</a>`;
-                    infowindow.setContent(html);
+                    infoHTML = showDetails(result);
                 }
+                // If error infoHTML will contain basic information from current place result
                 else {
-                    let html = `
-                    ${place.name}<br>${place.formatted_address}<br>${place.price_level}<br>${place.rating}`;
-                    infowindow.setContent(html);
+                    infoHTML = `
+                    ${place.name}<br>
+                    ${place.formatted_address}<br>
+                    ${place.price_level}<br>
+                    ${place.rating}
+                    `;
                 }
-            })
-            infowindow.open(map, this);
+                infowindow.setContent(infoHTML);
+                infowindow.open(map, marker);
+            });
         });
+    }
+
+    function showDetails(place) {
+        // let dayOfWeek = moment().isoWeekday() - 1;
+        let dayOfWeek = 2;
+        // Parses the relevant fields of place into readable output
+        let name = (place.name !== undefined) ? place.name : 'Unnamed';
+        let address = (place.formatted_address !== undefined) ? place.formatted_address : 'No Address Given';
+        let price = (place.price_level !== undefined) ? place.price_level : '';
+        let rating = (place.name !== undefined) ? `Rating: ${place.name}` : 'No rating';
+        let phone = (place.phone !== undefined) ? place.formatted_phone_number : 'No phone #';
+        let hours = (place.opening_hours !== undefined) ? place.opening_hours.weekday_text[dayOfWeek] : ''; 
+        let website = (place.website !== undefined) ? `<a href="${place.website}">Website</a>` : '';
+        let image = (place.photos !== undefined) ? `<img src='${place.photos[0].getUrl({maxWidth: 150, maxHeight: 150})}'><br>` : '';
+        // Compiles the place variables into one html string to return
+        output = 
+            `${image}
+            ${name}<br>
+            ${address}<br>
+            ${price}<br>
+            ${rating}<br>
+            ${phone}<br>
+            ${hours}<br>
+            ${website}`;
+        return output
     }
 })
