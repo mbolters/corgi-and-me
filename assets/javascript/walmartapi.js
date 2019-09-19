@@ -1,6 +1,5 @@
 //start jQuery
 $(document).ready(function(){
-    $("#target1").css("color", "red");
 
 //this is the Walmart API search 
 let walmartLink = "https://www.walmart.com/ip/";
@@ -44,12 +43,7 @@ $.ajax(settings[0]).done(function (response) {
     $("#firstLink").attr("href", walmartLink + productID[0]);
     $( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[2]).appendTo( "#firstLink" );
     $("#price1").append("$" + price);
-
-
-
 });
-
-
 
 $.ajax(settings[1]).done(function (response) {
     $("#spinner").hide(); //hides the spinner once results load
@@ -58,7 +52,6 @@ $.ajax(settings[1]).done(function (response) {
     $( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[0]).appendTo( "#secondLink" );
     $("#price2").append("$" + price);
 });
-
 
 $.ajax(settings[2]).done(function (response) {
     $("#spinner").hide(); //hides the spinner once results load
@@ -69,6 +62,5 @@ $.ajax(settings[2]).done(function (response) {
 });
 });
 //Get 'er done Marie
-    //create about page and link
     //select items per weather condition to display
     //adorable corgi images for weather
