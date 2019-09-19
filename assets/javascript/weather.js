@@ -1,6 +1,8 @@
 const APIKey = "0c6668971156042fde49c6adad3e262d";
 
 function initTemp(location) {
+    $("#spinnerTemp").hide(); //hides the spinner once results load
+
     $.ajax({
         url: `https://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lng}&cnt=8&appid=${APIKey}`,
         method: "GET"

@@ -1,4 +1,6 @@
 function initMap(location){
+    $("#spinnerMap").hide(); //hides the spinner once results load
+
     // Initializes map upon loading of Google Maps API
     const map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 0, lng: 0},
