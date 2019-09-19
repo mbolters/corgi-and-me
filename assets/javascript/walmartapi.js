@@ -1,45 +1,74 @@
 //start jQuery
 $(document).ready(function(){
-
+    $("#target1").css("color", "red");
 
 //this is the Walmart API search 
+let walmartLink = "https://www.walmart.com/ip/";
+let productID = ["417529705", "161250671", "15580429"]
 
-var productID = "17018181";
-
-var walmartObjects = [];
-
-var settings = {
+var settings = [{
 	"async": true,
 	"crossDomain": true,
-	"url": "https://feeditem-walmart.p.rapidapi.com/itemID/" + productID,
+	"url": "https://feeditem-walmart.p.rapidapi.com/itemID/" + productID[0],
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "feeditem-walmart.p.rapidapi.com",
 		"x-rapidapi-key": "290be0fd14mshdbddbf002f394adp1bd091jsn91fedda5b4f3"
 	}
-}
+},
+{
+	"async": true,
+	"crossDomain": true,
+	"url": "https://feeditem-walmart.p.rapidapi.com/itemID/" + productID[1],
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "feeditem-walmart.p.rapidapi.com",
+		"x-rapidapi-key": "290be0fd14mshdbddbf002f394adp1bd091jsn91fedda5b4f3"
+	}
+},
+{
+	"async": true,
+	"crossDomain": true,
+	"url": "https://feeditem-walmart.p.rapidapi.com/itemID/" + productID[2],
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "feeditem-walmart.p.rapidapi.com",
+		"x-rapidapi-key": "290be0fd14mshdbddbf002f394adp1bd091jsn91fedda5b4f3"
+	}
+}];
 
-$.ajax(settings).done(function (response) {
+
+$.ajax(settings[0]).done(function (response) {
     $("#spinner").hide(); //hides the spinner once results load
-    $("#products").html()
+    let price = response.Item.CurrentPrice.Value;
+    $("#firstLink").attr("href", walmartLink + productID[0]);
+    $( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[2]).appendTo( "#firstLink" );
+    $("#price1").append("$" + price);
 
 
 
+});
 
 
 
+$.ajax(settings[1]).done(function (response) {
+    $("#spinner").hide(); //hides the spinner once results load
+    let price = response.Item.CurrentPrice.Value;
+    $("#secondLink").attr("href", walmartLink + productID[1]);
+    $( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[0]).appendTo( "#secondLink" );
+    $("#price2").append("$" + price);
+});
 
-    // walmartObjects[0] = response.Item;
-	console.log(response.Item.Title);
-    console.log(response.Item.CurrentPrice.Value);
-    console.log(response.Item.PictureURL[5]);
+
+$.ajax(settings[2]).done(function (response) {
+    $("#spinner").hide(); //hides the spinner once results load
+    let price = response.Item.CurrentPrice.Value;
+    $("#thirdLink").attr("href", walmartLink + productID[2]);
+    $( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[1]).appendTo( "#thirdLink" );
+    $("#price3").append("$" + price);
 });
 });
 //Get 'er done Marie
-    //make the spinner hide when the API loads the items    
     //create about page and link
-    //select 5 items per weather condition to display
-    //make 5 items show up in box
-        //make sure this includes price, image, and title
-    //add any spinners necessary for teammates
+    //select items per weather condition to display
     //adorable corgi images for weather

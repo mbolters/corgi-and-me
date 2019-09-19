@@ -5,11 +5,36 @@
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
-}
+  }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+  }
+  
+div[role=listbox] {
+  width:100%; 
+  height: 300px !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+}
+
+.carousel-caption {
+  background: rgb(103, 218, 238);
+  border-radius: 25px;
+  width: 100px;
+  height: 50px;
+  position: absolute; 
+}
+
+.price {
+  font-size: 20px; 
+  line-height: 50%;
+  font-weight: bold;
 }
 
 body, .jumbotron {
@@ -21,28 +46,28 @@ body, .jumbotron {
   background-position: center;
   background-size: cover;
   background-color: #ddfffc;
-}
+  }
 
-/* .home, .about {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 32px;
-  letter-spacing: 0px;
-  word-spacing: 0px;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none solid rgb(68, 68, 68);
-  font-style: normal;
-  font-variant: normal;
-  text-transform: uppercase;
-  background: white;
-  margin-left:10px;
-  margin-right:10px;
-  outline: solid 5px black; */
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}
 
 .card {
   background-color: rgba(211, 211, 211, 0.5);
   margin: 20px;
 } 
+
+.imageSize {
+  height: 300px !important;
+  width: 300px !important;
+}
+
+#container {
+  position: relative;
+}
 
 #map-container {
   width: 100%;
@@ -52,4 +77,8 @@ body, .jumbotron {
 #map {
   width: 100%;
   height: 100%;
+}
+
+#spinner {
+  position: fixed;
 }
