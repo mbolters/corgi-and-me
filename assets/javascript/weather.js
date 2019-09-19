@@ -1,22 +1,23 @@
 const APIKey = "0c6668971156042fde49c6adad3e262d";
-const queryURL1 = "https://api.openweathermap.org/data/2.5/forecast?q=Austin,US&cnt=8&appid=" + APIKey;
 
-$.ajax({
-    url: queryURL1,
-    method: "GET"
-}).then(function(response) {
-    const tempK = response.list[0].main.temp;
-    console.log(tempK);
-    const tempF = Math.round((tempK - 273.15) * 9/5 + 32);
-    console.log(tempF);
-    $("#temp-card").append("<h3 id='temp-val'>" + tempF + "° F</h3>");
-    $("#temp-val").css("margin-left", "30%");
-    $("#temp-val").css("margin-right", "30%");
-    tempColor(tempF);
+function initTemp(location) {
+    $.ajax({
+        url: `https://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lng}&cnt=8&appid=${APIKey}`,
+        method: "GET"
+    }).then(function(response) {
+        const tempK = response.list[0].main.temp;
+        console.log(tempK);
+        const tempF = Math.round((tempK - 273.15) * 9/5 + 32);
+        console.log(tempF);
+        $("#temp-card").append("<h3 id='temp-val'>" + tempF + "° F</h3>");
+        $("#temp-val").css("margin-left", "30%");
+        $("#temp-val").css("margin-right", "30%");
+        tempColor(tempF);
 
-}).catch(function(error) {
-    console.log("AJAX GET failed");
-});
+    }).catch(function(error) {
+        console.log("AJAX GET failed");
+    });
+}
 
 function tempColor(temp) {
     if (temp > 110) {
@@ -50,83 +51,84 @@ function tempColor(temp) {
 // 40 to 50F: Cool
 // 30 to 40F: Chilly
 
-const queryUrl2 = "https://cors-anywhere.herokuapp.com/http://pollen.aaaai.org/nab/index.cfm?p=allergenreport&stationid=111";
+function initPollen(location){
+    let station = pollenStations[location.country][location.region][location.city];
+    $.ajax({
+        url: `https://cors-anywhere.herokuapp.com/http://pollen.aaaai.org/nab/index.cfm?p=allergenreport&stationid=${station}`,
+        method: "GET"
+    }).then(function(response) {
+        let startHere = "<!-- BEGIN CONTENT -->";
+        let endHere = "View Calendar of Data";
+        let startIndex = response.search(startHere);
+        let endIndex = response.search(endHere);
+        
+        const slicedResponse = response.slice(startIndex,endIndex);
 
-$.ajax({
-    url: queryUrl2,
-    method: "GET"
-}).then(function(response) {
-    let startHere = "<!-- BEGIN CONTENT -->";
-    let endHere = "View Calendar of Data";
-    let startIndex = response.search(startHere);
-    let endIndex = response.search(endHere);
-    
-    const slicedResponse = response.slice(startIndex,endIndex);
+        // for Trees
+        startHere = '<div class="box-1">';
+        endHere = '<div class="box-2">';
+        startIndex = slicedResponse.search(startHere);
+        endIndex = slicedResponse.search(endHere);
 
-    // for Trees
-    startHere = '<div class="box-1">';
-    endHere = '<div class="box-2">';
-    startIndex = slicedResponse.search(startHere);
-    endIndex = slicedResponse.search(endHere);
+        const forTrees = slicedResponse.slice(startIndex,endIndex);
+        const pollenTrees = getPollen(forTrees);
 
-    const forTrees = slicedResponse.slice(startIndex,endIndex);
-    const pollenTrees = getPollen(forTrees);
+        // for Weeds
+        startHere = '<div class="box-2">';
+        endHere = '<div class="box-3">';
+        startIndex = slicedResponse.search(startHere);
+        endIndex = slicedResponse.search(endHere);
 
-    // for Weeds
-    startHere = '<div class="box-2">';
-    endHere = '<div class="box-3">';
-    startIndex = slicedResponse.search(startHere);
-    endIndex = slicedResponse.search(endHere);
+        const forWeeds = slicedResponse.slice(startIndex,endIndex);
+        const pollenWeeds = getPollen(forWeeds);
 
-    const forWeeds = slicedResponse.slice(startIndex,endIndex);
-    const pollenWeeds = getPollen(forWeeds);
+        // for Grass
+        startHere = '<div class="box-3">';
+        endHere = '<div class="box-4">';
+        startIndex = slicedResponse.search(startHere);
+        endIndex = slicedResponse.search(endHere);
 
-    // for Grass
-    startHere = '<div class="box-3">';
-    endHere = '<div class="box-4">';
-    startIndex = slicedResponse.search(startHere);
-    endIndex = slicedResponse.search(endHere);
+        const forGrass = slicedResponse.slice(startIndex,endIndex);
+        const pollenGrass = getPollen(forGrass);
 
-    const forGrass = slicedResponse.slice(startIndex,endIndex);
-    const pollenGrass = getPollen(forGrass);
+        // for Mold
+        startHere = '<div class="box-4">';
+        startIndex = slicedResponse.search(startHere);
 
-    // for Mold
-    startHere = '<div class="box-4">';
-    startIndex = slicedResponse.search(startHere);
+        const forMold = slicedResponse.slice(startIndex);
+        const pollenMold = getPollen(forMold);
 
-    const forMold = slicedResponse.slice(startIndex);
-    const pollenMold = getPollen(forMold);
-
-    // display the four pollen counts
-    const pollenCounts = [];
-    pollenCounts.push(pollenTrees);
-    pollenCounts.push(pollenWeeds);
-    pollenCounts.push(pollenGrass);
-    pollenCounts.push(pollenMold);
-    const pollenColors = [];
-    for (i=0; i<pollenCounts.length; i++) {
-        if (pollenCounts[i] === "reportveryhigh") {
-            pollenCounts[i] = "very high";
-            pollenColors[i] = "rgba(255,0,0,0.66)";
-        } else if (pollenCounts[i] === "reporthigh") {
-            pollenCounts[i] = "high";
-            pollenColors[i] = "rgba(255,204,0,0.66)";
-        } else if (pollenCounts[i] === "reportmoderate") {
-            pollenCounts[i] = "moderate";
-            pollenColors[i] = "rgba(255,255,102,0.66)";
-        } else if (pollenCounts[i] === "reportlow") {
-            pollenCounts[i] = "low";
-            pollenColors[i] = "rgba(204,255,204,0.66)";
-        } else {
-            pollenColors[i] = "transparent";
+        // display the four pollen counts
+        const pollenCounts = [];
+        pollenCounts.push(pollenTrees);
+        pollenCounts.push(pollenWeeds);
+        pollenCounts.push(pollenGrass);
+        pollenCounts.push(pollenMold);
+        const pollenColors = [];
+        for (i=0; i<pollenCounts.length; i++) {
+            if (pollenCounts[i] === "reportveryhigh") {
+                pollenCounts[i] = "very high";
+                pollenColors[i] = "rgba(255,0,0,0.66)";
+            } else if (pollenCounts[i] === "reporthigh") {
+                pollenCounts[i] = "high";
+                pollenColors[i] = "rgba(255,204,0,0.66)";
+            } else if (pollenCounts[i] === "reportmoderate") {
+                pollenCounts[i] = "moderate";
+                pollenColors[i] = "rgba(255,255,102,0.66)";
+            } else if (pollenCounts[i] === "reportlow") {
+                pollenCounts[i] = "low";
+                pollenColors[i] = "rgba(204,255,204,0.66)";
+            } else {
+                pollenColors[i] = "transparent";
+            }
         }
-    }
-    displayPollen(pollenCounts,pollenColors);
+        displayPollen(pollenCounts,pollenColors);
 
-}).catch(function(error) {
-    console.log(error.code);
-    console.log("error as above");
-});
+    }).catch(function(error) {
+        console.log(error.code);
+        console.log("error as above");
+    });
+}
 
 function displayPollen(counts,colors) {
     const pollenCard = $("<br><div><h4>Pollen Counts</h4></div>");
