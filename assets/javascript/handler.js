@@ -59,6 +59,7 @@ $(document).ready(function(){
             // Adds listener for submission of location
             $('#location-form').on('submit', function(e){
                 e.preventDefault();
+                // Uses geocoder through places library to obtain user location information from input
                 geocoder.geocode({'address': $('#location-input').val()}, function(results, status){
                     if (status === 'OK'){
                         // Stores an object, User, with both coordinates and a google maps LatLng object
@@ -75,6 +76,7 @@ $(document).ready(function(){
                         $('#exampleModalCenter').modal('hide');
                         mainInitializer(user);
                     }
+                    // If Geocoder fails for some reason prompts the user to try again
                     else{
                         console.log('Geocoder failed due to: ' + status);
                         $('#location-input').val('');
@@ -83,25 +85,12 @@ $(document).ready(function(){
                 })
             })
         }
-            // Uses places api to obtain coordinates of location
-                // If valid location
-                    // Initializes user object
-                    // Closes Modal
-                    // Calls mainInitializer
-                // Else
-                    // Prompts user to try again
+
     }
 
     function mainInitializer(user){
-        // Calls initMap passing userLatLng for location
         initMap(user.latLng);
-        // When initWeather and initPollen have resolved
         initTemp(user.location);
         initPollen(user.place);
-        initShopping();
-            // Call initShopping and pass tempData and pollenData
-            // ...or not if the search is not at all initialized
-            // even if search is not initialized, just need an array of product ids
-            // that can easily be done
     }
 })      
