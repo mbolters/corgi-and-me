@@ -74,8 +74,7 @@ function initMap(location){
     }
 
     function showDetails(place) {
-        // let dayOfWeek = moment().isoWeekday() - 1;
-        let dayOfWeek = 2;
+        let dayOfWeek = moment().isoWeekday() - 1;
         // Parses the relevant fields of place into readable output
         let name = (place.name !== undefined) ? place.name : 'Unnamed';
         let address = (place.formatted_address !== undefined) ? place.formatted_address : 'No Address Given';
