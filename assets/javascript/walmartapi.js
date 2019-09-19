@@ -1,4 +1,5 @@
-function initShopping(){
+$( document ).ready(function() {
+
 	//this is the Walmart API search 
 	let walmartLink = "https://www.walmart.com/ip/";
 	let productID = ["417529705", "161250671", "15580429"]
@@ -43,7 +44,7 @@ function initShopping(){
 	});
 
 	$.ajax(settings[1]).done(function (response) {
-		$("#spinner").hide(); //hides the spinner once results load
+		$("#spinner2").hide(); //hides the spinner once results load
 		let price = response.Item.CurrentPrice.Value;
 		$("#secondLink").attr("href", walmartLink + productID[1]);
 		$( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[0]).appendTo( "#secondLink" );
@@ -51,13 +52,14 @@ function initShopping(){
 	});
 
 	$.ajax(settings[2]).done(function (response) {
-		$("#spinner").hide(); //hides the spinner once results load
+		$("#spinner3").hide(); //hides the spinner once results load
 		let price = response.Item.CurrentPrice.Value;
 		$("#thirdLink").attr("href", walmartLink + productID[2]);
 		$( "<img>" ).addClass("imageSize").attr( "src", response.Item.PictureURL[1]).appendTo( "#thirdLink" );
 		$("#price3").append("$" + price);
 	});
-}
+
+});
 	//Get 'er done Marie
 		//select items per weather condition to display
 		//adorable corgi images for weather
